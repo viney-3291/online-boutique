@@ -58,7 +58,7 @@ resource "aws_iam_role_policy_attachment" "ec2_container_registry_readonly" {
 resource "aws_eks_cluster" "main" {
   name     = "online-boutique-cluster"
   role_arn = aws_iam_role.eks_cluster_role.arn
-  version  = "1.30"
+  version  = "1.34"
 
   vpc_config {
     subnet_ids = [

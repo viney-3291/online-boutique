@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: loadgenerator
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: loadgenerator
+  template:
+    metadata:
+      labels:
+        app: loadgenerator
+    spec:
+      containers:
+        - name: loadgenerator
+          image: 865749917919.dkr.ecr.us-east-1.amazonaws.com/loadgenerator:b03773cf983cbd5b115020ccc59bdb9352362673
+          command: ["locust"]
+          args:
+            - "-f"
+            - "locustfile.py"
+            - "--headless"
+            - "-u"
+            - "10"
+            - "-r"
+            - "1"
+            - "--host=http://frontend"
